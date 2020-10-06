@@ -3,9 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-productos',
   template: `
-    <div class="row">
-      <app-listado-vd class="col"></app-listado-vd>
-    </div>
+    <app-listado-productos class="col"></app-listado-productos>
   `,
   styles: [
   ]

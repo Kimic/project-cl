@@ -3,14 +3,17 @@ import { CommonModule } from '@angular/common';
 
 import { ProductosRoutingModule } from './productos-routing.module';
 import { ProductosComponent } from './productos.component';
-import { ListadoVdComponent } from './listado-vd/listado-vd.component';
+import { FormsModule } from '@angular/forms';
+import { ListadoProductosComponent } from './listado-productos/listado-productos.component';
+import { FormularioProductosComponent } from './formulario-productos/formulario-productos.component';
 
 
 @NgModule({
-  declarations: [ProductosComponent, ListadoVdComponent],
+  declarations: [ProductosComponent, ListadoProductosComponent, FormularioProductosComponent],
   imports: [
     CommonModule,
-    ProductosRoutingModule
+    ProductosRoutingModule,
+    FormsModule
   ]
 })
 export class ProductosModule { }

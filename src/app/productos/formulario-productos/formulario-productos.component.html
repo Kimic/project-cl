@@ -1,0 +1,41 @@
+<form #formulario="ngForm" (ngSubmit)="enviar()">
+    <!--Text-->
+    <fieldset>
+        <legend>Datos del producto</legend>
+        <!-- Etiqueta / Campo "Nombre" -->
+        <div class="form-group row">
+            <label for="name" class="col-3">Nombre</label>
+            <input type="text" class="form-control col-9" #nameState="ngModel" name="nombre" id="nombre" [(ngModel)]="producto.nombre" required minlength="3" placeholder="Indica tu nombre (es obligatorio)">
+        </div>
+        <!--
+        <div [hidden]="nameState.valid || nameState.untouched ">
+            <div class="error-message" [hidden]="!nameState.errors?.required">
+                El nombre es obligatorio</div>
+            <div class="error-message" [hidden]="!nameState.errors?.minlength">
+                El nombre debe tener un mínimo de 3 caracteres
+            </div>
+        </div>
+        -->
+        <!--Etiqueta / Campo "autor"-->
+        <div class="form-group row">
+            <label for="autor" class="col-3">Autor</label>
+            <input type="text" class="form-control col-9" id="autor" name="autor" [(ngModel)]="producto.autor" required placeholder="Indica el autor (es obligatorio)">
+        </div>
+
+        <!--Etiqueta / Campo "precio"-->
+        <div class="form-group row">
+            <label for="autor" class="col-3">Precio</label>
+            <input type="number" class="form-control col-9" id="precio" name="precio" [(ngModel)]="producto.precio" required placeholder="Indica el precio (es obligatorio)">
+        </div>
+
+    </fieldset>
+    <div class="form-group row">
+        <button type="submit" class="btn btn-primary mr-2"
+            [disabled]="formulario.invalid">
+            Enviar</button>
+        <button type="reset" class="btn btn-primary"
+            [disabled]="formulario.pristine">
+            Borrar</button>
+    </div>
+</form>
+<pre>{{ producto | json }}</pre>

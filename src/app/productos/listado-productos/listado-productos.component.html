@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Listado de productos <a routerLink="nuevo">nuevo producto</a></h4>
+    </div>
+    <div class="col" *ngIf="aProductos.length">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let producto of aProductos">
+                <a href="#" routerLink = "editar/{{producto.id}}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <div class="flex-column">{{producto.nombre}}
+                        <p><small>by {{producto.autor}}</small></p>
+                        <span class="badge badge-info badge-pill"> Precio {{producto.precio | currency}}</span>
+                    </div>
+                    <div class="image-parent">
+                        <img src="../../../assets/images/logo.jpeg" class="img-fluid" alt="quixote">
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

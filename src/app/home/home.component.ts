@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-home',
   template: `
-    <p>
+    <div class="container-fluid">
       home works!
-    </p>
+  </div>
   `,
   styles: [
   ]
