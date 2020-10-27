@@ -10,16 +10,23 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrls: ['./formulario-productos.component.css']
 })
 export class FormularioProductosComponent implements OnInit {
-  [x: string]: any;
+  errors: Array<any>;
   producto: Producto;
   constructor(public srvProducto: ProductoService, private rutaActiva: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.producto = new Producto();
+    this.errors = [];
     if (this.rutaActiva.snapshot.params.id) {
         // tslint:disable-next-line: radix
         this.producto.id = parseInt(this.rutaActiva.snapshot.params.id);
-        this.srvProducto.detailProducto(this.producto.id).subscribe( response => this.producto = response);
+        this.srvProducto.detailProducto(this.producto.id)
+          .subscribe(
+              response => this.producto = response,
+              err => {
+                this.errors.push(err.error);
+              }
+          );
     }
   }
 

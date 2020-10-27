@@ -3,6 +3,7 @@ import { Producto } from 'src/app/models/producto';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
+import { configuracion } from '../../models/configuracion';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class ProductoService {
 
   constructor(public http: HttpClient) {
     this.aProducto = [];
-    this.urlBase = 'http://localhost:8080/producto';
+    this.urlBase = configuracion.urlBase;
   }
 
   private handleError(error: HttpErrorResponse): any {
@@ -24,12 +25,12 @@ export class ProductoService {
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
     }
-    return throwError(
-      'Something bad happened; please try again later.');
+    window.alert(error);
+    return throwError(error);
   }
 
   getProductos() {
-    const URL = this.urlBase;
+    const URL = `${this.urlBase}producto`;
     return this.http.get(URL)
     .pipe(
         map(
@@ -41,25 +42,24 @@ export class ProductoService {
 
   addProducto(producto: any): Observable<any> {
     const URL = this.urlBase;
-    return this.http.post(URL , producto).pipe(
-      catchError(this.handleError)
+    return this.http.post(URL , producto)
+      .pipe(catchError(this.handleError)
     );
   }
 
   editProducto(producto: any): Observable<any> {
     const URL = this.urlBase;
-    return this.http.put(URL + '/' + producto.id, producto).pipe(
-      catchError(this.handleError)
+    return this.http.put(URL + '/' + producto.id, producto)
+      .pipe(catchError(this.handleError)
     );
   }
 
   detailProducto(id: number): Observable<any> {
     const URL = this.urlBase;
-    return this.http.get(URL + '/' + id).pipe(
-      catchError(this.handleError)
+    return this.http.get(URL + '/' + id)
+      .pipe(catchError(this.handleError)
     );
   }
-
 
   private extractProducto(response: any){
     return response.map(producto => producto);

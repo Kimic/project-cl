@@ -3,4 +3,5 @@ export class Producto {
     nombre: string;
     precio: number;
     autor: string;
+    categoriaNombre: string;
 }

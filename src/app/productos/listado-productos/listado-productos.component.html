@@ -1,6 +1,51 @@
+<div class="container">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-11">
+                <p>{{msn.subtitulo}}:</p>
+            </div>
+            <div class="col-sm-1">
+                <a href="#" class="btn btn-outline-secondary" routerLink="nuevo"><span>Nuevo</span></a>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>{{msn.codigo}}</th>
+          <th>{{msn.nombre}}</th>
+          <th>{{msn.precio}}</th>
+          <th>{{msn.categoria}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of aProductos">
+          <td>{{producto.id}}</td>
+          <td>
+            <div class="flex-column">{{producto.nombre}}
+                <p><small>by {{producto.autor}}</small></p>
+            </div>
+          </td>
+          <td>{{producto.precio | currency}}</td>
+          <td>{{producto.categoriaNombre}}</td>
+        </tr>
+        <tr *ngIf="aProductos.length == 0">
+            <td colspan="4">{{msn.sinresultados}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+<!--
 <div class="card">
     <div class="card-body">
-        <h4 class="card-title">Listado de productos <a routerLink="nuevo">nuevo producto</a></h4>
+        <h4 class="card-title">Listado de productos</h4>
+    </div>
+    <div class="col">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary" routerLink="nuevo">Nuevo</button>
+        </div>
     </div>
     <div class="col" *ngIf="aProductos.length">
         <ul class="list-group list-group-flush">
@@ -18,3 +63,4 @@
         </ul>
     </div>
 </div>
+-->

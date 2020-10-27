@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <label>{{msnapp.buscador}}:</label>
+                <input type="text" class="form-control col-12" #nameState="ngModel" name="nombre" id="nombre" 
+                [(ngModel)]="nombre" (change) = "buscarMovimientos()" required 
+                  minlength="3" placeholder="nombre del movimento">
+            </div>
+            <div class="col-sm-2 left">
+              <label>&nbsp;</label><br>
+              <button type="submit" class="btn btn-primary mr-2 left" (click) = "buscarMovimientos()"><i class="fa fa-search" aria-hidden="true"></i>&nbsp; {{msnapp.botonBuscar}}</button>
+            </div>
+            <div class="col">
+                <label>&nbsp;</label><br>
+                <a href="#" class="btn btn-outline-secondary right" routerLink="nuevo"><span ><i class="fas fa-plus"></i> Nuevo</span></a>
+            </div>
+        </div>
+    </div>
+    <hr>          
+    <ngb-pagination style="float: right;" [(page)]="page" [pageSize]="pageSize" [collectionSize]="aMovimientos.length"></ngb-pagination>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>{{msn.codigo}}</th>
+          <th>{{msn.nombre}}</th>
+          <th>{{msn.tipo}}</th>
+          <th>{{msn.importe}}</th>
+          <th>{{msn.fecha}}</th>
+          <th>{{msn.fechaCreacion}}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let movimiento of aMovimientos | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+          <td>{{movimiento.id}}</td>
+          <td>{{movimiento.nombre}}</td>
+          <td>
+              <span *ngIf="movimiento.tipo == 'GA'">{{msn.gasto}}</span>
+              <span *ngIf="movimiento.tipo == 'IN'">{{msn.ingreso}}</span>
+          </td>
+          <td>{{movimiento.importe | currency:'EUR'}}</td>
+          <td>{{movimiento.fecha  | date:'dd/MM/yy'}}</td>
+          <td>{{movimiento.fechaCreacion  | date:'short'}}</td>
+          <td>
+            <span class="left">
+              <a href="#" routerLink="borrar"><i class="far fa-trash-alt"></i></a>
+              &nbsp;
+              <a href="#" routerLink="editar/{{movimiento.id}}"><i class="far fa-edit"></i></a>
+          </span>
+          </td>
+        </tr>
+        <tr *ngIf="errors.length>0">
+            <td colspan="6">
+                <span *ngFor="let error of errors"> {{error.fecha}} {{error.estado}} {{error.mensaje}}</span>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+ 
+  

@@ -6,11 +6,11 @@
         <div class="col">
             <!--Text-->
             <fieldset>
-                <legend>Datos del producto</legend>
+                <legend>Datos de la categoria</legend>
                 <!-- Etiqueta / Campo "Nombre" -->
                 <div class="form-group row">
                     <label for="name" class="col-3">Nombre</label>
-                    <input type="text" class="form-control col-6" #nameState="ngModel" name="nombre" id="nombre" [(ngModel)]="producto.nombre" required minlength="3" placeholder="Indica tu nombre (es obligatorio)">
+                    <input type="text" class="form-control col-6" #nameState="ngModel" name="nombre" id="nombre" [(ngModel)]="categoria.nombre" required minlength="3" placeholder="Indica tu nombre (es obligatorio)">
                 </div>
                 <!--
                 <div [hidden]="nameState.valid || nameState.untouched ">
@@ -23,14 +23,8 @@
                 -->
                 <!--Etiqueta / Campo "autor"-->
                 <div class="form-group row">
-                    <label for="autor" class="col-3">Autor</label>
-                    <input type="text" class="form-control col-6" id="autor" name="autor" [(ngModel)]="producto.autor" required placeholder="Indica el autor (es obligatorio)">
-                </div>
-
-                <!--Etiqueta / Campo "precio"-->
-                <div class="form-group row">
-                    <label for="autor" class="col-3">Precio</label>
-                    <input type="number" class="form-control col-6" id="precio" name="precio" [(ngModel)]="producto.precio" required placeholder="Indica el precio (es obligatorio)">
+                    <label for="autor" class="col-3">Descripcion</label>
+                    <input type="text" class="form-control col-6" id="Descripcion" name="autor" [(ngModel)]="categoria.descripcion" required placeholder="Indica la descripcion (es obligatorio)">
                 </div>
 
             </fieldset>
