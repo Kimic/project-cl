@@ -1,4 +1,5 @@
 import { Timestamp } from 'rxjs/internal/operators/timestamp';
+import { Categoria } from './categoria';
 
 export class Movimiento {
     id: number;
@@ -7,4 +8,10 @@ export class Movimiento {
     tipo: string;
     fecha: Date;
     fechaCreacion: Date;
+    categoria: Categoria;
 }
+
+export const TIPOS: Array<any> = [
+    {id: 'GA', nombre: 'Gasto'},
+    {id: 'IN', nombre: 'Ingreso'},
+];

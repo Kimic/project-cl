@@ -3,6 +3,7 @@ import { Movimiento } from 'src/app/models/movimiento';
 import { MovimientoService } from '../servicios/movimiento.service';
 import { movimientoMensajes } from '../../mensajes/movimiento-mensaje';
 import { aplicacionMensajes } from '../../mensajes/aplication-mensaje';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-listado-movimientos',
@@ -17,8 +18,8 @@ export class ListadoMovimientosComponent implements OnInit {
   msnapp: any;
   errors: Array<any>;
   page = 1;
-  pageSize = 2;
-  constructor(public movimientoService: MovimientoService) { }
+  pageSize = 5;
+  constructor(public movimientoService: MovimientoService, private rutaActiva: ActivatedRoute, private router: Router) {}
   ngOnInit(): void {
     this.aMovimientos = [];
     this.msn = movimientoMensajes;
@@ -46,5 +47,8 @@ export class ListadoMovimientosComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+  editar(id: number){
+    this.router.navigate([`/movimientos/editar/${id}`]);
   }
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Movimiento } from '../../models/movimiento';
+import { Movimiento, TIPOS } from '../../models/movimiento';
 import { MovimientoService } from '../servicios/movimiento.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CategoriaService } from '../../categorias/servicios/categoria.service';
 
 @Component({
   selector: 'app-formulario-movimientos',
@@ -11,10 +12,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class FormularioMovimientosComponent implements OnInit {
   errors: Array<any>;
   movimiento: Movimiento;
-  constructor(public movimientoService: MovimientoService, private rutaActiva: ActivatedRoute, private router: Router) { }
+  aCategorias: Array<any>;
+  aTipos: Array<any>;
+  // tslint:disable-next-line: max-line-length
+  constructor(public movimientoService: MovimientoService, public categoriaService: CategoriaService, private rutaActiva: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.movimiento = new Movimiento();
+    this.aCategorias = [];
+    this.aTipos = TIPOS;
     this.errors = [];
     if (this.rutaActiva.snapshot.params.id) {
       // tslint:disable-next-line: radix
@@ -27,6 +33,13 @@ export class FormularioMovimientosComponent implements OnInit {
             }
         );
     }
+    this.categoriaService.getCategorias('')
+      .subscribe(
+        response => this.aCategorias = response.content,
+        err => {
+          this.errors.push(err.error);
+        }
+      );
   }
 
   enviar(){

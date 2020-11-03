@@ -1,0 +1,28 @@
+.sidebar-dark .sidebar-heading {
+    color: rgba(255,255,255,.4);
+}
+.sidebar .sidebar-heading {
+    text-align: center;
+    padding: 0 1rem;
+    font-weight: 800;
+    font-size: .65rem;
+}
+.sidebar .sidebar-heading {
+    text-align: left;
+}
+.sidebar .sidebar-heading, .text-uppercase {
+    text-transform: uppercase!important;
+}
+hr.sidebar-divider {
+    border-top: 1px solid rgba(255,255,255,.15);
+}
+.sidebar hr.sidebar-divider {
+    margin: 0 1rem 1rem;
+}
+.nav-item .nav-link span {
+    font-size: .85rem;
+    display: inline;
+}
+.nav-item .nav-link {
+    color: rgba(255,255,255,.8);
+}

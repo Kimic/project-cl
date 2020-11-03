@@ -1,49 +1,60 @@
-<form #formulario="ngForm" (ngSubmit)="enviar()">
-    <div class="alert alert-danger" role="alert" *ngIf="errors.length>0">
-        <span *ngFor="let error of errors"> {{error.fecha}} {{error.estado}} {{error.mensaje}}</span>
-    </div>
-    <div class="card">
-        <div class="col">
-            <!--Text-->
-            <fieldset>
-                <legend>Datos del movimiento</legend>
-                <!-- Etiqueta / Campo "Nombre" -->
-                <div class="form-group row">
-                    <label for="name" class="col-3">Nombre</label>
-                    <input type="text" class="form-control col-6" #nameState="ngModel" name="nombre" id="nombre" [(ngModel)]="movimiento.nombre" required minlength="3" placeholder="Indica tu nombre (es obligatorio)">
-                </div>
-                <!--
-                <div [hidden]="nameState.valid || nameState.untouched ">
-                    <div class="error-message" [hidden]="!nameState.errors?.required">
-                        El nombre es obligatorio</div>
-                    <div class="error-message" [hidden]="!nameState.errors?.minlength">
-                        El nombre debe tener un mínimo de 3 caracteres
-                    </div>
-                </div>
-                -->
-                <!--Etiqueta / Campo "tipo"-->
-                <div class="form-group row">
-                    <label for="autor" class="col-3">Tipo</label>
-                    <input type="text" class="form-control col-6" id="autor" name="autor" [(ngModel)]="movimiento.tipo" required placeholder="Indica el tipo (es obligatorio)">
-                </div>
-
-                <!--Etiqueta / Campo "importe"-->
-                <div class="form-group row">
-                    <label for="autor" class="col-3">Importe</label>
-                    <input type="number" class="form-control col-6" id="precio" name="precio" [(ngModel)]="movimiento.importe" required placeholder="Indica el importe (es obligatorio)">
-                </div>
-
-            </fieldset>
-            <div class="form-group col">
-                <button type="submit" class="btn btn-primary mr-2"
-                    [disabled]="formulario.invalid">
-                    Enviar</button>
-                <button type="reset" class="btn btn-primary"
-                    [disabled]="formulario.pristine">
-                    Borrar</button>
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"></nav>
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Formulario movimiento</h6>
+      </div>
+      <div class="card-body">
+        <form #formulario="ngForm" novalidate>
+            <div class="alert alert-danger" role="alert" *ngIf="errors.length>0">
+                <span *ngFor="let error of errors"> {{error.fecha}} {{error.estado}} {{error.mensaje}}</span>
             </div>
-        </div>
-    </div> 
-</form>
+            <div class="form-group row">
+                <label for="name" class="col-3">Nombre</label>
+                <input type="text" class="form-control bg-light border-1 small col-6" #nameState="ngModel" name="nombre" id="nombre" [(ngModel)]="movimiento.nombre" required minlength="3" placeholder="Indica el nombre del movimiento (es obligatorio)">
+            </div>  
+            <div class="form-group row">
+                <label for="name" class="col-3">Categoria</label>
+                <select class="form-control bg-light border-1 small col-6" id="categoria" name="categoriaId" [(ngModel)]="movimiento.categoria">
+                    <option *ngFor="let categoria of aCategorias" [ngValue]="categoria"> {{categoria.nombre}} </option>
+                </select>
+            </div>  
+            <div class="form-group row">
+                <label for="name" class="col-3">Tipo</label>
+                <select class="form-control bg-light border-1 small col-2" id="tipo" name="tipo" [(ngModel)]="movimiento.tipo">
+                    <option *ngFor="let tipo of aTipos" [ngValue]="tipo.id"> {{tipo.nombre}} </option>
+                </select>
+            </div>
+            <div class="form-group row">
+                <label for="name" class="col-3">Importe</label>
+                <input type="text" class="form-control bg-light border-1 small col-2" #nameState="ngModel" name="importe" id="importe" [(ngModel)]="movimiento.importe" required placeholder="">
+            </div> 
+            
+            
+                        <!--
+                        <div [hidden]="nameState.valid || nameState.untouched ">
+                            <div class="error-message" [hidden]="!nameState.errors?.required">
+                                El nombre es obligatorio</div>
+                            <div class="error-message" [hidden]="!nameState.errors?.minlength">
+                                El nombre debe tener un mínimo de 3 caracteres
+                            </div>
+                        </div>
+                        -->
+                        <!--Etiqueta / Campo "tipo"-->
+                    
 
-<pre>{{ errors | json }}</pre>
+                <div class="form-group col ">
+                    <a href="#" class="btn btn-primary btn-icon-split btn-sm right" (click) = "enviar()">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+                        <span class="text">Guardar</span>
+                    </a>
+                </div>
+        </form>
+      </div>
+    </div>
+</div>                  
+
+<pre>{{ movimiento | json }}</pre>

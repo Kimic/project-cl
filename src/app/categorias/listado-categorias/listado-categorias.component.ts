@@ -3,6 +3,7 @@ import { Categoria } from 'src/app/models/categoria';
 import { CategoriaService } from '../servicios/categoria.service';
 import { categoriaMensajes } from '../../mensajes/categoria-mensajes';
 import { aplicacionMensajes } from 'src/app/mensajes/aplication-mensaje';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-listado-categorias',
@@ -16,8 +17,8 @@ export class ListadoCategoriasComponent implements OnInit {
   nombre: string;
   errors: Array<any>;
   page = 1;
-  pageSize = 2;
-  constructor(public categoriaService: CategoriaService) {}
+  pageSize = 5;
+  constructor(public categoriaService: CategoriaService, private rutaActiva: ActivatedRoute, private router: Router) {}
   ngOnInit(): void {
     this.aCategorias = [];
     this.msn = categoriaMensajes;
@@ -44,5 +45,9 @@ export class ListadoCategoriasComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  editar(id: number){
+    this.router.navigate([`/categorias/editar/${id}`]);
   }
 }
